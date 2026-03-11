@@ -1,0 +1,87 @@
+{
+  "customers": [
+    {
+      "id": "CUST001",
+      "name": "Sarah Johnson",
+      "device": "iPhone 14",
+      "phone": "(555) 234-5678",
+      "appointment_type": "Email Setup Issue",
+      "previous_issues": [
+        "Email setup fixed 2 months ago",
+        "iCloud sync issue resolved"
+      ],
+      "device_info": {
+        "model": "iPhone 14",
+        "ios_version": "17.2",
+        "storage_used": "45GB of 128GB"
+      }
+    },
+    {
+      "id": "CUST002", 
+      "name": "Mike Chen",
+      "device": "iPhone 13 Pro",
+      "phone": "(555) 345-6789",
+      "appointment_type": "Scam Validation",
+      "previous_issues": [
+        "Screen replacement last month",
+        "Battery health check"
+      ],
+      "device_info": {
+        "model": "iPhone 13 Pro",
+        "ios_version": "17.1.2",
+        "storage_used": "89GB of 256GB"
+      }
+    },
+    {
+      "id": "CUST003",
+      "name": "Lisa Rodriguez", 
+      "device": "iPhone 15",
+      "phone": "(555) 456-7890",
+      "appointment_type": "Backup Issues",
+      "previous_issues": [
+        "New device setup assistance",
+        "Apple ID password reset"
+      ],
+      "device_info": {
+        "model": "iPhone 15",
+        "ios_version": "17.3",
+        "storage_used": "32GB of 512GB"
+      }
+    }
+  ],
+  "guidance_examples": {
+    "email_setup": "I can see your email settings got corrupted. Tell them: 'I see what's happening - your email settings need to be refreshed. This is really common after iOS updates. Go to Settings, then Mail, and tap on your email account.' Wait for them to do that, then continue: 'Now tap Delete Account - don't worry, this won't delete any of your emails, just the broken connection. Then we'll add it back with the correct settings and everything will work perfectly.'",
+    
+    "scam_validation": "This is definitely a scam email. Tell them: 'I can confirm this is a phishing scam - Apple will never email you saying your account is locked. The real giveaway is they're asking you to click a link to verify. Apple would never do that.' Reassure them: 'You did the right thing by not clicking it. Just delete this email and don't worry - your real Apple ID is completely safe.'",
+    
+    "backup_restore": "I see the backup is failing because of a storage calculation error. Tell them: 'Your iCloud plan upgrade is active, but your iPhone needs to refresh the storage info. Go to Settings, tap your name at the top, then iCloud.' Wait for them, then: 'Now tap iCloud Backup, then Back Up Now. This will force it to recognize your new storage space and the backup should work.'",
+    
+    "internal_tools": "The Apple ID password issue is usually a keychain sync problem. Tell them: 'This happens when your keychain gets out of sync between devices. We'll sign you out and back in to refresh everything. Go to Settings, tap your name, then Sign Out at the bottom.' Important: 'Make sure you know your Apple ID password before we do this - write it down if you need to.'"
+  },
+  "common_issues": [
+    {
+      "category": "Email Setup",
+      "frequency": "35% of calls",
+      "typical_causes": ["iOS update corruption", "Server setting changes", "Password expiration"],
+      "resolution_time": "5-8 minutes"
+    },
+    {
+      "category": "Scam Validation", 
+      "frequency": "28% of calls",
+      "typical_causes": ["Phishing emails", "Fake tech support calls", "Suspicious App Store charges"],
+      "resolution_time": "3-5 minutes"
+    },
+    {
+      "category": "Apple ID Issues",
+      "frequency": "22% of calls", 
+      "typical_causes": ["Password sync issues", "Two-factor problems", "Account recovery needs"],
+      "resolution_time": "8-12 minutes"
+    },
+    {
+      "category": "Backup Problems",
+      "frequency": "15% of calls",
+      "typical_causes": ["Storage plan confusion", "WiFi connectivity", "Large photo libraries"],
+      "resolution_time": "10-15 minutes"
+    }
+  ]
+}

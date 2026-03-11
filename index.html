@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mister Mac AI Technician Copilot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap');
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #faf9f5;
+            color: #4a4845;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, button, label, .label, nav, .badge, th {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .app-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e8e6dc;
+            padding: 0 24px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            color: #141413;
+            font-size: 18px;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e8e6dc;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .card-subtle {
+            background: #f0efe9;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .section-label {
+            font-family: 'Roboto', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: #b0aea5;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 14px;
+        }
+
+        .field-label {
+            display: block;
+            font-family: 'Roboto', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: #b0aea5;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 7px;
+        }
+
+        input, select, textarea {
+            background: #ffffff;
+            border: 1px solid #e8e6dc;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            color: #141413;
+            width: 100%;
+            outline: none;
+            margin-bottom: 16px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #d97757;
+        }
+
+        ::placeholder { color: #b0aea5; }
+
+        .btn-primary {
+            background: #d97757;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.15s;
+            margin-right: 12px;
+        }
+
+        .btn-primary:hover { background: #b85e3a; }
+        .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
+
+        .btn-secondary {
+            background: #f0efe9;
+            color: #141413;
+            border: 1px solid #e8e6dc;
+            border-radius: 8px;
+            padding: 10px 22px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover { background: #e8e6dc; }
+
+        .two-col { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 24px; 
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            margin: 2px 4px;
+        }
+
+        .badge-green  { color: #788c5d; background: #e8eddf; }
+        .badge-orange { color: #d97757; background: #f5e6df; }
+        .badge-blue   { color: #6a9bcc; background: #e3eef7; }
+        .badge-yellow { color: #c4973a; background: #fdf3dd; }
+
+        .loading-state {
+            text-align: center;
+            color: #d97757;
+            padding: 48px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 15px;
+        }
+
+        .guidance-output {
+            background: #ffffff;
+            border: 2px solid #d97757;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+        }
+
+        .guidance-output h3 {
+            color: #d97757;
+            margin-bottom: 16px;
+            font-size: 18px;
+        }
+
+        .customer-context {
+            background: #f0efe9;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+
+        .issue-tags {
+            margin: 12px 0;
+        }
+
+        hr { border: none; border-top: 1px solid #e8e6dc; margin: 24px 0; }
+
+        .demo-note {
+            background: #e3eef7;
+            border: 1px solid #b8d4eb;
+            color: #4a6a8a;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .sample-scenarios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .scenario-btn {
+            background: #ffffff;
+            border: 1px solid #e8e6dc;
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            font-size: 13px;
+            text-align: left;
+            transition: all 0.15s;
+        }
+
+        .scenario-btn:hover {
+            border-color: #d97757;
+            background: #f5e6df;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #141413;
+            margin-bottom: 8px;
+        }
+
+        .page-subtitle {
+            font-size: 15px;
+            color: #b0aea5;
+            margin-bottom: 32px;
+        }
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        🍎 Mister Mac AI Technician Copilot
+    </header>
+
+    <main class="container">
+        <h1 class="page-title">AI Technician Copilot</h1>
+        <p class="page-subtitle">Real-time guidance for junior technicians during customer support calls</p>
+
+        <div class="demo-note">
+            <strong>Demo Mode:</strong> Upload an iPhone screenshot or describe a customer issue. The AI will generate step-by-step guidance your junior techs can read aloud to customers.
+        </div>
+
+        <div class="two-col">
+            <div>
+                <div class="card">
+                    <div class="section-label">Customer Issue Input</div>
+                    
+                    <label class="field-label">Customer Description</label>
+                    <textarea 
+                        id="customerDescription" 
+                        rows="4" 
+                        placeholder="What is the customer saying about their iPhone issue?"
+                    >My iPhone email stopped working and I can't receive any messages. It was working fine yesterday but now nothing is coming through.</textarea>
+
+                    <label class="field-label">Customer Screen (Optional)</label>
+                    <input type="file" id="screenImage" accept="image/*">
+
+                    <label class="field-label">Customer ID</label>
+                    <select id="customerId">
+                        <option value="CUST001">Sarah Johnson - iPhone 14</option>
+                        <option value="CUST002">Mike Chen - iPhone 13 Pro</option>
+                        <option value="CUST003">Lisa Rodriguez - iPhone 15</option>
+                    </select>
+
+                    <button class="btn-primary" onclick="analyzeIssue()" id="analyzeBtn">
+                        Generate AI Guidance
+                    </button>
+                    <button class="btn-secondary" onclick="transcribeAudio()">
+                        🎤 Transcribe Audio
+                    </button>
+                </div>
+
+                <div class="card-subtle">
+                    <div class="section-label">Quick Test Scenarios</div>
+                    <div class="sample-scenarios">
+                        <div class="scenario-btn" onclick="loadScenario('email')">
+                            📧 Email Setup Broken<br>
+                            <small>Exchange/Gmail config issues</small>
+                        </div>
+                        <div class="scenario-btn" onclick="loadScenario('scam')">
+                            ⚠️ Scam Validation<br>
+                            <small>Suspicious email/call</small>
+                        </div>
+                        <div class="scenario-btn" onclick="loadScenario('backup')">
+                            ☁️ Backup Issues<br>
+                            <small>iCloud storage problems</small>
+                        </div>
+                        <div class="scenario-btn" onclick="loadScenario('tools')">
+                            🔧 Apple ID Issues<br>
+                            <small>Account recovery needed</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div id="guidancePanel" class="card" style="display: none;">
+                    <div class="section-label">AI-Generated Technician Guidance</div>
+                    <div id="guidanceContent"></div>
+                </div>
+
+                <div id="loadingPanel" class="loading-state" style="display: none;">
+                    <div style="font-size:32px; margin-bottom:12px;">⏳</div>
+                    Analyzing customer issue with AI...
+                </div>
+
+                <div id="emptyPanel" class="card">
+                    <div style="text-align: center; color: #b0aea5; padding: 48px; font-size: 14px;">
+                        Select a scenario or describe a customer issue to get AI guidance
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const scenarios = {
+            email: "My iPhone email stopped working and I can't receive any messages. It was working fine yesterday but now nothing is coming through.",
+            scam: "I got this email saying my Apple ID is locked and I need to verify it, but I'm not sure if it's real or a scam. Should I click the link?",
+            backup: "My iPhone backup keeps failing and says my iCloud storage is full, but I already upgraded my plan. I don't know what to do.",
+            tools: "I can't sign into my Apple ID on my new iPhone. It keeps saying my password is wrong but I know it's right."
+        };
+
+        function loadScenario(type) {
+            document.getElementById('customerDescription').value = scenarios[type];
+            analyzeIssue();
+        }
+
+        async function analyzeIssue() {
+            const description = document.getElementById('customerDescription').value.trim();
+            if (!description) {
+                alert('Please describe the customer issue first');
+                return;
+            }
+
+            // Show loading state
+            document.getElementById('emptyPanel').style.display = 'none';
+            document.getElementById('guidancePanel').style.display = 'none';
+            document.getElementById('loadingPanel').style.display = 'block';
+            
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            analyzeBtn.disabled = true;
+            analyzeBtn.textContent = 'Analyzing...';
+
+            try {
+                const formData = new FormData();
+                formData.append('customer_description', description);
+                formData.append('customer_id', document.getElementById('customerId').value);
+                
+                const screenFile = document.getElementById('screenImage').files[0];
+                if (screenFile) {
+                    formData.append('screen_image', screenFile);
+                }
+
+                const response = await fetch('/analyze-issue', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                displayGuidance(result);
+
+            } catch (error) {
+                console.error('Analysis error:', error);
+                displayGuidance({
+                    success: false,
+                    error: 'AI analysis failed - using fallback guidance'
+                });
+            } finally {
+                analyzeBtn.disabled = false;
+                analyzeBtn.textContent = 'Generate AI Guidance';
+                document.getElementById('loadingPanel').style.display = 'none';
+            }
+        }
+
+        function displayGuidance(result) {
+            const panel = document.getElementById('guidancePanel');
+            const content = document.getElementById('guidanceContent');
+
+            if (result.success) {
+                const categoryColors = {
+                    email_setup: 'blue',
+                    scam_validation: 'yellow', 
+                    backup_restore: 'orange',
+                    internal_tools: 'green',
+                    general: 'gray'
+                };
+
+                const categoryColor = categoryColors[result.issue_category] || 'gray';
+
+                content.innerHTML = `
+                    <div class="customer-context">
+                        <strong>Customer:</strong> ${result.customer_info.name || 'Unknown'} | 
+                        <strong>Device:</strong> ${result.customer_info.device || 'iPhone'} | 
+                        <strong>Est. Time:</strong> ${result.estimated_resolution_time || '5-10 min'}
+                        ${result.customer_info.previous_issues ? '<br><strong>Previous Issues:</strong> ' + result.customer_info.previous_issues.join(', ') : ''}
+                    </div>
+
+                    <div class="issue-tags">
+                        <span class="badge badge-${categoryColor}">${result.issue_category.replace('_', ' ').toUpperCase()}</span>
+                        ${result.screen_analysis ? '<span class="badge badge-blue">SCREEN ANALYZED</span>' : ''}
+                        ${result.note ? '<span class="badge badge-yellow">FALLBACK MODE</span>' : ''}
+                    </div>
+
+                    <div class="guidance-output">
+                        <h3>📋 Read This to Customer:</h3>
+                        <div style="white-space: pre-line; font-size: 15px; line-height: 1.7;">
+${result.guidance}
+                        </div>
+                    </div>
+
+                    ${result.screen_analysis ? `
+                        <hr>
+                        <div style="font-size: 13px; color: #b0aea5;">
+                            <strong>Screen Analysis:</strong> ${result.screen_analysis}
+                        </div>
+                    ` : ''}
+                `;
+            } else {
+                content.innerHTML = `
+                    <div style="color: #c0463a; padding: 20px; text-align: center;">
+                        <strong>Analysis Failed</strong><br>
+                        ${result.error || 'Unknown error occurred'}
+                    </div>
+                `;
+            }
+
+            panel.style.display = 'block';
+            document.getElementById('emptyPanel').style.display = 'none';
+        }
+
+        async function transcribeAudio() {
+            // In a real implementation, this would record audio and send it to Whisper
+            // For the demo, we'll simulate the transcription process
+            
+            alert('Audio transcription would process live call audio using OpenAI Whisper.\n\nFor this demo, try the sample scenarios instead.');
+        }
+
+        // Auto-load the first scenario for immediate demo impact
+        window.addEventListener('load', () => {
+            setTimeout(() => loadScenario('email'), 1000);
+        });
+    </script>
+</body>
+</html>
